@@ -1,0 +1,116 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7ctatqya84u"]
+
+[ext_resource type="Script" path="res://scenes/CharacterBody2D.gd" id="1_kf7rr"]
+[ext_resource type="Texture2D" uid="uid://dwtek4bqnjkei" path="res://sprites/indicator.png" id="2_x05bu"]
+[ext_resource type="Texture2D" uid="uid://dq6xer3qqlv2h" path="res://sprites/bar.png" id="3_x2vfq"]
+[ext_resource type="Texture2D" uid="uid://3c32modjwcsp" path="res://sprites/char.png" id="4_nok48"]
+[ext_resource type="Texture2D" uid="uid://cvk8inmw56qm0" path="res://sprites/npc.png" id="5_t2bo4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_muh2i"]
+size = Vector2(27.5, 49)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5gyt5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x05bu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1u0k"]
+size = Vector2(28, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kv0l2"]
+size = Vector2(14.25, 57.75)
+
+[node name="Node2D" type="Node2D"]
+metadata/_edit_horizontal_guides_ = []
+
+[node name="background" type="ColorRect" parent="."]
+offset_right = 1150.0
+offset_bottom = 646.0
+color = Color(0.839216, 0.839216, 0.839216, 1)
+
+[node name="GreenArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreenArea"]
+position = Vector2(544, 232)
+shape = SubResource("RectangleShape2D_muh2i")
+debug_color = Color(0, 0.643137, 0.317647, 0.419608)
+
+[node name="ColorRect" type="ColorRect" parent="GreenArea"]
+offset_left = 530.0
+offset_top = 207.0
+offset_right = 558.0
+offset_bottom = 256.0
+color = Color(0.533333, 1, 0.478431, 1)
+
+[node name="Bar" type="Sprite2D" parent="."]
+position = Vector2(587, 232)
+scale = Vector2(0.465934, 0.416667)
+texture = ExtResource("3_x2vfq")
+
+[node name="indicator" type="CharacterBody2D" parent="."]
+position = Vector2(404, -43)
+script = ExtResource("1_kf7rr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="indicator"]
+position = Vector2(56, 309)
+scale = Vector2(0.372611, 0.372611)
+sprite_frames = SubResource("SpriteFrames_5gyt5")
+
+[node name="Area2D" type="Area2D" parent="indicator"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="indicator/Area2D"]
+position = Vector2(57, 315)
+shape = SubResource("RectangleShape2D_l1u0k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="indicator"]
+position = Vector2(57, 315)
+shape = SubResource("RectangleShape2D_l1u0k")
+
+[node name="Label" type="Label" parent="indicator"]
+offset_left = 21.0
+offset_top = 357.0
+offset_right = 96.0
+offset_bottom = 383.0
+horizontal_alignment = 1
+
+[node name="collision walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision walls"]
+position = Vector2(773, 232)
+shape = SubResource("RectangleShape2D_kv0l2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="collision walls"]
+position = Vector2(375, 230)
+shape = SubResource("RectangleShape2D_kv0l2")
+
+[node name="Char" type="Sprite2D" parent="."]
+position = Vector2(945, 358)
+scale = Vector2(0.330893, 0.330893)
+texture = ExtResource("4_nok48")
+
+[node name="Npc" type="Sprite2D" parent="."]
+position = Vector2(220, 363)
+scale = Vector2(0.361888, 0.361888)
+texture = ExtResource("5_t2bo4")
+
+[node name="NumofSuccess" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 369.0
+offset_top = 167.0
+offset_right = 409.0
+offset_bottom = 190.0
+
+[connection signal="area_entered" from="GreenArea" to="indicator" method="_on_areatest_area_entered"]
+[connection signal="area_entered" from="GreenArea" to="indicator" method="_on_green_area_area_entered"]
+[connection signal="area_exited" from="GreenArea" to="indicator" method="_on_areatest_area_exited"]
+[connection signal="area_exited" from="GreenArea" to="indicator" method="_on_green_area_area_exited"]
+[connection signal="area_shape_entered" from="GreenArea" to="indicator" method="_on_areatest_area_shape_entered"]
+[connection signal="area_entered" from="indicator/Area2D" to="indicator" method="_on_area_2d_area_entered"]
+[connection signal="area_shape_entered" from="indicator/Area2D" to="indicator" method="_on_area_2d_area_shape_entered"]
