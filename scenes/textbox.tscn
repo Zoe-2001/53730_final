@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1sm5huvup81r"]
+
+[ext_resource type="Script" path="res://textbox.gd" id="1_m6cwg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xutss"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2met"]
+bg_color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_c6ub3"]
+font_names = PackedStringArray("Abaddon")
+
+[node name="Textbox" type="CanvasLayer"]
+script = ExtResource("1_m6cwg")
+
+[node name="TextboxContainer" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -185.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TextboxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Panel" type="Panel" parent="TextboxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xutss")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextboxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="TextboxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t2met")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextboxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Start" type="Label" parent="TextboxContainer/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = SubResource("SystemFont_c6ub3")
+theme_override_font_sizes/font_size = 32
+text = "*"
+
+[node name="Text" type="Label" parent="TextboxContainer/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = SubResource("SystemFont_c6ub3")
+theme_override_font_sizes/font_size = 32
+text = "Text! Some placeholder Text to show the functionality of the textbox... Text! Some placeholder Text to show the functionality of the textbox..."
+autowrap_mode = 3
+clip_text = true
+
+[node name="End" type="Label" parent="TextboxContainer/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/font = SubResource("SystemFont_c6ub3")
+theme_override_font_sizes/font_size = 32
+text = ">"
