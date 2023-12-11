@@ -1,9 +1,8 @@
-[gd_scene load_steps=85 format=3 uid="uid://bwacx30d4l3lw"]
+[gd_scene load_steps=86 format=3 uid="uid://bwacx30d4l3lw"]
 
 [ext_resource type="Script" path="res://scripts/dialogesystem.gd" id="1_heb4s"]
 [ext_resource type="Texture2D" uid="uid://kjqw68hst6je" path="res://sprites/char_arrow.png" id="2_74h7x"]
 [ext_resource type="Texture2D" uid="uid://ds8yqlm6yquiv" path="res://sprites/background.png" id="2_lg6ae"]
-[ext_resource type="Script" path="res://scenes/ReactionBarIndicator.gd" id="2_yggjc"]
 [ext_resource type="Texture2D" uid="uid://dwtek4bqnjkei" path="res://sprites/indicator.png" id="3_oynyu"]
 [ext_resource type="Theme" uid="uid://btgw5l7nl6lwu" path="res://themes/timebar_theme.tres" id="4_xiur7"]
 [ext_resource type="Texture2D" uid="uid://dbwsb13nt1vvh" path="res://sprites/characters/mushroom/Attack.png" id="5_pi872"]
@@ -13,11 +12,15 @@
 [ext_resource type="Texture2D" uid="uid://d0s3s60hy2rb7" path="res://sprites/characters/huntress/Attack.png" id="9_irlag"]
 [ext_resource type="Texture2D" uid="uid://b1tlq5f2fgvrp" path="res://sprites/characters/huntress/Death.png" id="10_lc28n"]
 [ext_resource type="Texture2D" uid="uid://bkuv1rsa0khf8" path="res://sprites/characters/huntress/Idle.png" id="11_7cqtv"]
+[ext_resource type="Script" path="res://scripts/ReactionBarIndicator.gd" id="12_acehk"]
 [ext_resource type="Texture2D" uid="uid://bmu03fac5olua" path="res://sprites/characters/huntress/Take hit.png" id="12_yd0te"]
-[ext_resource type="AudioStream" uid="uid://03u7mr3psras" path="res://sound/[S] PH Descend.mp3" id="13_5khk5"]
 [ext_resource type="AudioStream" uid="uid://bdaxutqv4fkl7" path="res://sound/Retro Impact Metal 05.wav" id="14_s05vd"]
 [ext_resource type="AudioStream" uid="uid://b387wwn4ku0o2" path="res://sound/Retro Impact 20.wav" id="15_6hhuv"]
+[ext_resource type="AudioStream" uid="uid://bwy3v5kyroapo" path="res://sound/game - Track 01 - cc0.wav" id="15_otavl"]
 [ext_resource type="AudioStream" uid="uid://cjwdqb3op2l1i" path="res://sound/next.wav" id="15_v47gm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2jbp"]
+bg_color = Color(0, 0, 0, 0.580392)
 
 [sub_resource type="SystemFont" id="SystemFont_xism3"]
 font_names = PackedStringArray("ipix_12px")
@@ -25,8 +28,8 @@ font_names = PackedStringArray("ipix_12px")
 [sub_resource type="SystemFont" id="SystemFont_go63c"]
 font_names = PackedStringArray("ipix_12px")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2jbp"]
-bg_color = Color(0, 0, 0, 0.580392)
+[sub_resource type="SystemFont" id="SystemFont_gryxl"]
+font_names = PackedStringArray("ipix_12px")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6glpw"]
 atlas = ExtResource("5_pi872")
@@ -493,35 +496,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="BackgroundAndTexts"]
-offset_left = 532.0
-offset_top = -2.0
-offset_right = 751.0
-offset_bottom = 65.0
-theme_override_fonts/font = SubResource("SystemFont_xism3")
-theme_override_font_sizes/font_size = 48
-text = "V.S."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="BackgroundAndTexts"]
-offset_left = 20.0
-offset_top = 51.0
-offset_right = 260.0
-offset_bottom = 87.0
-theme_override_fonts/font = SubResource("SystemFont_go63c")
-theme_override_font_sizes/font_size = 32
-text = "Mr.Mushroom"
-
-[node name="Label3" type="Label" parent="BackgroundAndTexts"]
-offset_left = 985.0
-offset_top = 51.0
-offset_right = 1271.0
-offset_bottom = 87.0
-theme_override_fonts/font = SubResource("SystemFont_go63c")
-theme_override_font_sizes/font_size = 32
-text = "Huntress (You)"
-
 [node name="Background" type="Sprite2D" parent="BackgroundAndTexts"]
 modulate = Color(0.678431, 0.941176, 0.392157, 0.596078)
 position = Vector2(648, 341)
@@ -541,6 +515,48 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_y2jbp")
 
+[node name="Label" type="Label" parent="BackgroundAndTexts"]
+layout_mode = 0
+offset_left = 532.0
+offset_top = -2.0
+offset_right = 751.0
+offset_bottom = 65.0
+theme_override_fonts/font = SubResource("SystemFont_xism3")
+theme_override_font_sizes/font_size = 48
+text = "V.S."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="BackgroundAndTexts"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 51.0
+offset_right = 260.0
+offset_bottom = 87.0
+theme_override_fonts/font = SubResource("SystemFont_go63c")
+theme_override_font_sizes/font_size = 32
+text = "Mr.Mushroom"
+
+[node name="Label3" type="Label" parent="BackgroundAndTexts"]
+layout_mode = 0
+offset_left = 985.0
+offset_top = 51.0
+offset_right = 1271.0
+offset_bottom = 87.0
+theme_override_fonts/font = SubResource("SystemFont_go63c")
+theme_override_font_sizes/font_size = 32
+text = "Huntress (You)"
+
+[node name="ComboCount" type="Label" parent="BackgroundAndTexts"]
+layout_mode = 0
+offset_left = 1087.0
+offset_top = 495.0
+offset_right = 1263.0
+offset_bottom = 531.0
+theme_override_fonts/font = SubResource("SystemFont_gryxl")
+theme_override_font_sizes/font_size = 28
+text = "Combo x1"
+
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="MushroomAnimation" type="AnimatedSprite2D" parent="Characters"]
@@ -548,7 +564,7 @@ position = Vector2(223, 331)
 scale = Vector2(7.87, 7.87)
 sprite_frames = SubResource("SpriteFrames_wgf1a")
 animation = &"idle"
-frame_progress = 0.275189
+frame_progress = 0.545326
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Characters/MushroomAnimation"]
 position = Vector2(0.889452, -21.474)
@@ -561,7 +577,7 @@ position = Vector2(1025, 362)
 scale = Vector2(7.88667, 7.88667)
 sprite_frames = SubResource("SpriteFrames_un5df")
 animation = &"idle"
-frame_progress = 0.275122
+frame_progress = 0.815731
 flip_h = true
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Characters/HuntressAnimation"]
@@ -652,7 +668,7 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="ReactionBarIndicator" type="CharacterBody2D" parent="ReactionUISet/ReactionBarContainer/MarginContainer2"]
-script = ExtResource("2_yggjc")
+script = ExtResource("12_acehk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ReactionUISet/ReactionBarContainer/MarginContainer2/ReactionBarIndicator"]
 position = Vector2(640.5, -6)
@@ -763,7 +779,7 @@ value = 80.0
 show_percentage = false
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_5khk5")
+stream = ExtResource("15_otavl")
 autoplay = true
 
 [node name="SoundHit" type="AudioStreamPlayer" parent="."]

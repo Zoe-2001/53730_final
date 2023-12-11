@@ -7,6 +7,7 @@ func _on_quit_button_pressed():
 
 
 func _on_play_button_pressed():
-	SceneTransition.change_scene("res://scenes/gameloop.tscn")
+	SceneTransition.change_scene("res://scenes/textbox.tscn")
+	$SoundClick.play()
 
 

@@ -16,13 +16,17 @@ enum State {
 }
 var current_state = State.READY
 var text_queue = []
-
+var num_of_intro_text = 5
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide_textbox()
-	queue_text("First text. First text. First text. First text. First text. First text. First text. First text. First text. First text. First text. First text. First text. First text. ")
-	queue_text("Second text!Second text!Second text!Second text!Second text!Second text!Second text!Second text!")
-	queue_text("Third text! Third text! Third text!")
+	$BGM.play()
+	$Cheering.play()
+	queue_text("Ladies, gentlemen, and enchanted forest creatures, welcome to the most anticipated event in woodland entertainment – the War of Words, fondly known as WoW!")
+	queue_text("Today, we bring you a competition where insults are slung with the precision of arrows, and banter reigns supreme in the heart of the enchanted forest.")
+	queue_text("In this age-old tradition, we will witness a clash of wit and banter between a skilled huntress and a mischievous mushroom monster.")
+	queue_text("Now, let me break down the rules of this verbal skirmish. Our contestants will engage in a lighthearted exchange of insults, showcasing their creativity and quick thinking. Each comeback will be met with an equally witty reply, turning the forest into a playground of clever taunts.")
+	queue_text("Now, get ready for WoW – where arrows may miss, but insults hit the bullseye of amusement! The War of Words has begun!")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,6 +47,10 @@ func _process(delta):
 			if Input.is_action_just_pressed("ui_accept"):
 				change_state(State.READY)
 				hide_textbox()
+				$SoundClick.play()
+				num_of_intro_text = num_of_intro_text -1
+				if(num_of_intro_text <= 0):
+					SceneTransition.change_scene_slow("res://scenes/gameloop.tscn")
 
 
 func hide_textbox():

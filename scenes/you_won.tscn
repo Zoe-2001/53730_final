@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfq23ci0igxsc"]
+
+[ext_resource type="Script" path="res://scripts/you_won.gd" id="1_qrbt4"]
+[ext_resource type="Texture2D" uid="uid://ds8yqlm6yquiv" path="res://sprites/background.png" id="1_umo4y"]
+[ext_resource type="AudioStream" uid="uid://cjwdqb3op2l1i" path="res://sound/next.wav" id="2_1ct7f"]
+[ext_resource type="AudioStream" uid="uid://b6bwv0nnfr447" path="res://sound/cheering-and-clapping-crowd-1-5995.mp3" id="3_8obre"]
+
+[sub_resource type="SystemFont" id="SystemFont_edtrs"]
+font_names = PackedStringArray("ipix_12px")
+
+[sub_resource type="SystemFont" id="SystemFont_6i8p4"]
+font_names = PackedStringArray("ipix_12px")
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_qrbt4")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.941176, 0.909804, 0.576471, 1)
+position = Vector2(648, 341)
+scale = Vector2(4.72656, 4.72656)
+texture = ExtResource("1_umo4y")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 291.0
+offset_top = 404.0
+offset_right = 1041.0
+offset_bottom = 606.0
+theme_override_fonts/font = SubResource("SystemFont_edtrs")
+theme_override_font_sizes/font_size = 28
+text = "Congratulations, Huntress! You've emerged victorious as the 'Sultana of Sass'. The forest echoes with laughter, and even the mushrooms are applauding your wit. Time to bask in the glory of your banter!
+
+"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 282.0
+offset_top = 510.0
+offset_right = 1032.0
+offset_bottom = 712.0
+theme_override_fonts/font = SubResource("SystemFont_6i8p4")
+theme_override_font_sizes/font_size = 28
+text = "[Press Space to Restart]"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SoundClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_1ct7f")
+
+[node name="Cheering" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8obre")
