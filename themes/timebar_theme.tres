@@ -11,7 +11,7 @@ border_width_right = 4
 border_width_bottom = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_liryf"]
-bg_color = Color(0.611765, 0.054902, 0.0941176, 1)
+bg_color = Color(0.815686, 0.25098, 0.301961, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
