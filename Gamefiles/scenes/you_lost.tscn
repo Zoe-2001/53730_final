@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://duje4vlo2urvn"]
+
+[ext_resource type="Texture2D" uid="uid://ds8yqlm6yquiv" path="res://sprites/background.png" id="1_1jfa0"]
+[ext_resource type="Script" path="res://scripts/you_lost.gd" id="1_m0hl0"]
+[ext_resource type="AudioStream" uid="uid://cjwdqb3op2l1i" path="res://sound/next.wav" id="3_5rge5"]
+
+[sub_resource type="SystemFont" id="SystemFont_txl8y"]
+font_names = PackedStringArray("ipix_12px")
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_m0hl0")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.541176, 0.27451, 0.34902, 1)
+position = Vector2(648, 341)
+scale = Vector2(4.72656, 4.72656)
+texture = ExtResource("1_1jfa0")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 291.0
+offset_top = 404.0
+offset_right = 1041.0
+offset_bottom = 606.0
+theme_override_fonts/font = SubResource("SystemFont_txl8y")
+theme_override_font_sizes/font_size = 28
+text = "Looks like the forest critters have crowned you the 'Master of Missteps'. Better luck next time, Huntress! The mushrooms are throwing a victory party – don't forget your invitation!"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 282.0
+offset_top = 510.0
+offset_right = 1032.0
+offset_bottom = 712.0
+theme_override_fonts/font = SubResource("SystemFont_txl8y")
+theme_override_font_sizes/font_size = 28
+text = "[Press Space to Restart]"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SoundClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5rge5")

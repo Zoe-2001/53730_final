@@ -1,0 +1,124 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7ctatqya84u"]
+
+[ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="2_0conq"]
+[ext_resource type="Texture2D" uid="uid://dwtek4bqnjkei" path="res://sprites/indicator.png" id="2_x05bu"]
+[ext_resource type="Texture2D" uid="uid://dq6xer3qqlv2h" path="res://sprites/bar.png" id="3_x2vfq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_muh2i"]
+size = Vector2(27.5, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr4gy"]
+size = Vector2(18, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5gyt5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x05bu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1u0k"]
+size = Vector2(28, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kv0l2"]
+size = Vector2(14.25, 57.75)
+
+[node name="Game" type="Node2D"]
+metadata/_edit_horizontal_guides_ = []
+
+[node name="GreenArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreenArea"]
+position = Vector2(100, 62)
+shape = SubResource("RectangleShape2D_muh2i")
+debug_color = Color(0, 0.643137, 0.317647, 0.419608)
+
+[node name="ColorRect" type="ColorRect" parent="GreenArea"]
+offset_left = 86.0
+offset_top = 37.0
+offset_right = 114.0
+offset_bottom = 86.0
+color = Color(0.533333, 1, 0.478431, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="BlueArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlueArea"]
+position = Vector2(273, 61)
+shape = SubResource("RectangleShape2D_nr4gy")
+
+[node name="ColorRect" type="ColorRect" parent="BlueArea"]
+offset_left = 264.0
+offset_top = 37.0
+offset_right = 282.0
+offset_bottom = 88.0
+color = Color(0, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Bar" type="Sprite2D" parent="."]
+position = Vector2(223, 62)
+scale = Vector2(0.465934, 0.416667)
+texture = ExtResource("3_x2vfq")
+
+[node name="indicator" type="CharacterBody2D" parent="."]
+position = Vector2(404, -43)
+script = ExtResource("2_0conq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="indicator"]
+position = Vector2(-213, 136)
+scale = Vector2(0.372611, 0.372611)
+sprite_frames = SubResource("SpriteFrames_5gyt5")
+
+[node name="Area2D" type="Area2D" parent="indicator"]
+position = Vector2(-186, -47)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="indicator/Area2D"]
+position = Vector2(-26, 189)
+shape = SubResource("RectangleShape2D_l1u0k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="indicator"]
+position = Vector2(-212, 142)
+shape = SubResource("RectangleShape2D_l1u0k")
+
+[node name="Label" type="Label" parent="indicator"]
+offset_left = -248.0
+offset_top = 184.0
+offset_right = -173.0
+offset_bottom = 210.0
+horizontal_alignment = 1
+
+[node name="collision walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision walls"]
+position = Vector2(410, 66)
+shape = SubResource("RectangleShape2D_kv0l2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="collision walls"]
+position = Vector2(11, 63)
+shape = SubResource("RectangleShape2D_kv0l2")
+
+[node name="NumofSuccess" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 9.0
+offset_right = 56.0
+offset_bottom = 32.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[connection signal="area_entered" from="GreenArea" to="indicator" method="_on_green_area_area_entered"]
+[connection signal="area_entered" from="GreenArea" to="indicator" method="_on_areatest_area_entered"]
+[connection signal="area_exited" from="GreenArea" to="indicator" method="_on_green_area_area_exited"]
+[connection signal="area_exited" from="GreenArea" to="indicator" method="_on_areatest_area_exited"]
+[connection signal="area_shape_entered" from="GreenArea" to="indicator" method="_on_areatest_area_shape_entered"]
+[connection signal="area_entered" from="BlueArea" to="indicator" method="_on_blue_area_area_entered"]
+[connection signal="area_exited" from="BlueArea" to="indicator" method="_on_blue_area_area_exited"]
+[connection signal="area_entered" from="indicator/Area2D" to="indicator" method="_on_area_2d_area_entered"]
+[connection signal="area_shape_entered" from="indicator/Area2D" to="indicator" method="_on_area_2d_area_shape_entered"]
