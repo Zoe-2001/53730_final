@@ -15,10 +15,14 @@ run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://sprites/icon.svg"
 
+[autoload]
+
+SceneTransition="*res://scenes/scene_transition.tscn"
+
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=540
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [rendering]
 
